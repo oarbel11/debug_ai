@@ -34,6 +34,7 @@ from abc import ABC, abstractmethod
 import duckdb
 import pandas as pd
 
+
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # LOGGING
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -44,6 +45,7 @@ logging.basicConfig(
     datefmt='%H:%M:%S'
 )
 logger = logging.getLogger('DebugEngine')
+
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # SECURITY: Input Validation
@@ -197,11 +199,11 @@ class DebugEngine:
     DEFAULT_COLUMN_LINEAGE = 'meta.column_lineage'
 
     def __init__(
-            self,
-            db_path: Optional[str] = None,
-            db_type: str = 'duckdb',
-            table_lineage_table: Optional[str] = None,
-            column_lineage_table: Optional[str] = None
+        self,
+        db_path: Optional[str] = None,
+        db_type: str = 'duckdb',
+        table_lineage_table: Optional[str] = None,
+        column_lineage_table: Optional[str] = None
     ):
         """
         Initialize the Debug Engine.

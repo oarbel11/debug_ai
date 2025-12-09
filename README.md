@@ -101,7 +101,7 @@ python debug_engine.py
 ### Python API
 
 ```python
-from debug_engine import DebugEngine
+from scripts.debug_engine import DebugEngine
 
 # Auto-detect database
 engine = DebugEngine()

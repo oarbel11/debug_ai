@@ -21,14 +21,14 @@ ENVIRONMENT VARIABLES:
 
 import os
 import sys
-from typing import Optional, List, Any
+from typing import Optional
 
 # Add project root to path
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, PROJECT_ROOT)
 
 # Import our generic debug engine
-from debug_engine import DebugEngine, validate_identifier
+from scripts.debug_engine import DebugEngine
 
 # Import MCP
 try:
@@ -37,6 +37,7 @@ except ImportError:
     print("❌ MCP library not installed!")
     print("   Install with: pip install mcp")
     sys.exit(1)
+
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # MCP SERVER SETUP

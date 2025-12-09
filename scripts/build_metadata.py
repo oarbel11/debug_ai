@@ -33,6 +33,7 @@ import duckdb
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
+
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # LOGGING
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -81,7 +82,7 @@ class GenericSQLParser:
         re.IGNORECASE
     )
 
-    # Pattern: FROM/JOIN [schema.]table  
+    # Pattern: FROM/JOIN [schema.]table
     SOURCE_PATTERN = re.compile(
         r"\b(?:FROM|JOIN)\s+(\w+(?:\.\w+)?)",
         re.IGNORECASE
@@ -253,12 +254,12 @@ class MetadataBuilder:
 
                 for tl in all_table:
                     con.execute(f'INSERT INTO {self.meta_schema}.table_lineage VALUES (?, ?, ?)',
-                                [tl.target_table, tl.source_table, tl.sql_text])
+                               [tl.target_table, tl.source_table, tl.sql_text])
 
                 for cl in all_column:
                     con.execute(f'INSERT INTO {self.meta_schema}.column_lineage VALUES (?, ?, ?, ?, ?, ?)',
-                                [cl.target_table, cl.target_column, cl.source_table,
-                                 cl.source_column, cl.transformation_logic, cl.sql_file_name])
+                               [cl.target_table, cl.target_column, cl.source_table,
+                                cl.source_column, cl.transformation_logic, cl.sql_file_name])
 
                 con.execute('COMMIT')
                 print('   ✅ Success!')
