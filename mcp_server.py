@@ -21,14 +21,16 @@ ENVIRONMENT VARIABLES:
 
 import os
 import sys
-from typing import Optional
+from typing import Optional, List, Any
 
-# Add project root to path
+# Add project root and scripts folder to path
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+SCRIPTS_DIR = os.path.join(PROJECT_ROOT, 'scripts')
 sys.path.insert(0, PROJECT_ROOT)
+sys.path.insert(0, SCRIPTS_DIR)
 
-# Import our generic debug engine
-from scripts.debug_engine import DebugEngine
+# Import our generic debug engine (now in scripts folder)
+from debug_engine import DebugEngine, validate_identifier
 
 # Import MCP
 try:

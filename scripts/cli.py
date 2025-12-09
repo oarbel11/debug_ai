@@ -30,14 +30,22 @@ import argparse
 from pathlib import Path
 from typing import Optional
 
-# Add project root to path
-PROJECT_ROOT = Path(__file__).parent
+# cli.py is now in scripts/ folder
+# PROJECT_ROOT is the parent (debug_ai/)
+# SCRIPTS_DIR is where cli.py lives (debug_ai/scripts/)
+SCRIPTS_DIR = Path(__file__).parent.resolve()
+PROJECT_ROOT = SCRIPTS_DIR.parent.resolve()
+
+# Add both to path for imports
+sys.path.insert(0, str(SCRIPTS_DIR))
 sys.path.insert(0, str(PROJECT_ROOT))
+
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # CONFIG FILE MANAGEMENT
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+# Config file lives in project root (not scripts folder)
 CONFIG_FILE = PROJECT_ROOT / '.debug_ai_config.json'
 
 DEFAULT_CONFIG = {
@@ -362,7 +370,8 @@ def cmd_serve(args):
     print(f"\n📁 Database: {config['db_path']}")
     print()
 
-    # Import and run server
+    # Import and run server (mcp_server.py is in project root)
+    sys.path.insert(0, str(PROJECT_ROOT))
     import mcp_server
     mcp_server.mcp.run()
 
